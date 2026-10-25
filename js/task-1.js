@@ -1,12 +1,26 @@
 'use strict';
-function slugify(title) {
-  const slug = title.toLowerCase();
-  return slug.replaceAll(' ', '-');
+function isEnoughCapacity(products, containerSize) {
+  let total = 0;
+
+  const keys = Object.keys(products);
+
+  for (const key of keys) {
+    total += products[key];
+  }
+  if (total <= containerSize) {
+    return true;
+  } else {
+    return false;
+  }
 }
-console.log(slugify('Arrays for beginners')); // "arrays-for-beginners"
-console.log(slugify('English for developer')); // "english-for-developer"
-console.log(slugify('Ten secrets of JavaScript')); // "ten-secrets-of-javascript"
-console.log(slugify('How to become a JUNIOR developer in TWO WEEKS')); // "how-to-become-a-junior-developer-in-two-weeks"
+
+console.log(isEnoughCapacity({ apples: 2, grapes: 3, carrots: 1 }, 8)); // true
+
+console.log(isEnoughCapacity({ apples: 4, grapes: 6, lime: 16 }, 12)); // false
+
+console.log(isEnoughCapacity({ apples: 1, lime: 5, tomatos: 3 }, 14)); // true
+
+console.log(isEnoughCapacity({ apples: 18, potatos: 5, oranges: 2 }, 7)); // false
 
 /*Залиш цей код для перевірки ментором.
 
@@ -14,10 +28,10 @@ console.log(slugify('How to become a JUNIOR developer in TWO WEEKS')); // "how-t
 
 Вимоги
 
-Оголошено функцію slugify(title).
-Виклик slugify("Arrays for beginners") повертає "arrays-for-beginners".
-Виклик slugify("English for developer") повертає "english-for-developer".
-Виклик slugify("Ten secrets of JavaScript") повертає "ten-secrets-of-javascript".
-Виклик slugify("How to become a JUNIOR developer in TWO WEEKS") повертає "how-to-become-a-junior-developer-in-two-weeks".
+Оголошено функцію isEnoughCapacity(products, containerSize).
+Виклик isEnoughCapacity({ apples: 2, grapes: 3, carrots: 1 }, 8) повертає true.
+Виклик isEnoughCapacity({ apples: 4, grapes: 6, lime: 16 }, 12) повертає false.
+Виклик isEnoughCapacity({ apples: 1, lime: 5, tomatos: 3 }, 14) повертає true.
+Виклик isEnoughCapacity({ apples: 18, potatos: 5, oranges: 2 }, 7) повертає false.
 Виклик з будь-якими валідними аргументами повертає правильне значення.
 Результати всіх викликів виведено в консоль.*/
